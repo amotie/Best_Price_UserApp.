@@ -14,12 +14,16 @@
         android:src="@drawable/logo"
         android:layout_gravity="center"
         android:layout_weight="1"
+        android:id="@+id/logo"
+        android:visibility="visible"
         />
 <LinearLayout
+    android:visibility="visible"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_weight="1">
+    android:layout_weight="1"
+    android:id="@+id/liner">
     <EditText
         android:id="@+id/username"
         android:layout_width="240dp"
@@ -38,6 +42,7 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
       android:layout_marginTop="25dp"
+        android:inputType="textPassword"
 
 
 
@@ -74,5 +79,14 @@
         />
 </LinearLayout>
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_weight="1"
+android:id="@+id/progressbar"
+
+        />
 
 </LinearLayout>

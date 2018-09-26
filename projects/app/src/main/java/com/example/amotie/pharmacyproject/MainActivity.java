@@ -45,6 +45,7 @@ ImageSwitcher imageSwitcher;
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         imageSwitcher=(ImageSwitcher)findViewById(R.id.imageswetcher);
         Animation in= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.in);
 Animation out=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.out);
@@ -177,9 +178,9 @@ materialSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextList
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-if(id==R.id.settings){
-Intent intent= new Intent(this,Settings.class);
-startActivity(intent);
+        if(id==R.id.settings){
+        Intent intent= new Intent(this,Settings.class);
+        startActivity(intent);
 }
         if(id==R.id.Track){
             Intent intent=new Intent(this,Track_Order.class);
