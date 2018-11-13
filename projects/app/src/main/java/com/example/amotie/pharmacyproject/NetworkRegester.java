@@ -33,7 +33,8 @@ public class NetworkRegester extends AsyncTask<String,Void,String> {
                 String phone=strings[2];
                 String password=strings[3];
                 String Address=strings[4];
-                String Company_name=strings[5];
+                String pharmacy_name=strings[5];
+
                 URL url=new URL(Regester_Url);
                 HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -49,7 +50,7 @@ public class NetworkRegester extends AsyncTask<String,Void,String> {
                         +URLEncoder.encode("phone","utf-8")+"="+URLEncoder.encode(phone,"utf-8")+"&"
                         +URLEncoder.encode("password","utf-8")+"="+URLEncoder.encode(password,"utf-8")+"&"
                         +URLEncoder.encode("Address","utf-8")+"="+URLEncoder.encode(Address,"utf-8")+"&"
-                        +URLEncoder.encode("Company_name","utf-8")+"="+URLEncoder.encode(Company_name,"utf-8");
+                        +URLEncoder.encode("Pharmacy_Name","utf-8")+"="+URLEncoder.encode(pharmacy_name,"utf-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -77,7 +78,7 @@ public class NetworkRegester extends AsyncTask<String,Void,String> {
     protected void onPostExecute(String s) {
         Signup activity=activityWeakReference.get();
 System.out.println(s);
-        if(s.equals("SignUp Succ")){
+        if(s.equals("Record Added")){
             if(activity==null||activity.isFinishing()){
                 return;
             }

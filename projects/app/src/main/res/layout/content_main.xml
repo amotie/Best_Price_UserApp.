@@ -7,16 +7,28 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main"
-    android:background="@color/colorAccent">
-    <ImageSwitcher
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imageswetcher"
-        >
-    </ImageSwitcher>
-    <ImageSwitcher
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageswetcher2"></ImageSwitcher>
+        android:id="@+id/toolbar_contaner">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <com.miguelcatalan.materialsearchview.MaterialSearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mysearch"
+            android:visibility="visible"
+            >
+
+
+        </com.miguelcatalan.materialsearchview.MaterialSearchView>
+    </FrameLayout>
+
 
 </LinearLayout>

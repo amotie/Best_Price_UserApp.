@@ -2,6 +2,7 @@ package com.example.amotie.pharmacyproject;
 
 import android.content.Context;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -45,9 +46,17 @@ ArrayList<shopingListItem> shopingListItems=new ArrayList<>();
         setContentView(R.layout.activity_shopping_cart);
 
         setSupportActionBar(toolbar);
-shopingListItems.add(new shopingListItem("AAA","AAA",100,20));
-shopingListItems.add(new shopingListItem("BBB","BBB",200,10));
-shopingListItems.add(new shopingListItem("CCC","CCC",400,40));
+        Intent intent=getIntent();
+        String x;
+        if(intent.hasExtra("medcine")){
+           x= intent.getStringExtra("medcine");
+        }
+        else{
+            x="Pandol";
+        }
+shopingListItems.add(new shopingListItem(x,"Company Name",100,20));
+shopingListItems.add(new shopingListItem("Clartine","Company Name",200,10));
+shopingListItems.add(new shopingListItem("Agmantine","Company Name",400,40));
 
       listView =(SwipeMenuListView) findViewById(R.id.ShoppingList);
         sub_total=(TextView)findViewById(R.id.Total_Price);

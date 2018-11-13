@@ -1,6 +1,9 @@
+
 package com.example.amotie.pharmacyproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.UriMatcher;
 import android.os.AsyncTask;
 import android.view.View;
@@ -18,8 +21,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
-public class Network extends AsyncTask<String,Void,String> {
+public class Network extends AsyncTask<String,Void,ArrayList<String>> {
     private WeakReference<Login> activityWeakReference;
     Network(Login activity){
         activityWeakReference=new WeakReference<Login>(activity);
@@ -39,9 +43,9 @@ public class Network extends AsyncTask<String,Void,String> {
 
     @Override
 
-    protected String doInBackground(String... strings) {
+    protected ArrayList<String> doInBackground(String... strings) {
 
-      String LoginUrl="http://amotie.000webhostapp.com/login.php";
+      String LoginUrl="http://amotie.000webhostapp.com/login.php/";
         try {
             String username=strings[0];
             String password=strings[1];
@@ -60,15 +64,21 @@ public class Network extends AsyncTask<String,Void,String> {
             outputStream.close();
             InputStream inputStream=httpURLConnection.getInputStream();
             BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
-            String result="";
+
+            ArrayList arrayList =new ArrayList<String>();
             String line;
+
             while ((line=bufferedReader.readLine())!=null){
-                result+=line;
+                arrayList.add(line);
+
             }
+            arrayList.add(username);
+            arrayList.add(password);
             bufferedReader.close();
             inputStream.close();
             httpURLConnection.disconnect();
-            return result;
+
+            return arrayList;
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -79,16 +89,29 @@ public class Network extends AsyncTask<String,Void,String> {
     }
 
     @Override
-    protected void onPostExecute(String s) {
+    protected void onPostExecute(ArrayList<String> s) {
         Login activity=activityWeakReference.get();
-System.out.println(s);
-if(s.equals("1")){
+
+if(s.get(0).equals("Correct")){
     if(activity==null||activity.isFinishing()){
         return;
     }
     activity.progressBar.setVisibility(View.INVISIBLE);
     activity.linearLayout.setVisibility(View.VISIBLE);
     activity.logo.setVisibility(View.VISIBLE);
+
+SharedPreferences sharedPreferences=activity.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+SharedPreferences.Editor editor=sharedPreferences.edit();
+editor.putString("id",s.get(1));
+editor.putString("username",s.get(6));
+editor.putString("password",s.get(7));
+    editor.putString("Email",s.get(2));
+    editor.putString("Adress",s.get(3));
+    editor.putString("Phone",s.get(4));
+    editor.putString("Pharmacy_Name",s.get(5));
+
+editor.apply();
+
     Intent intent=new Intent(activity,MainActivity.class);
     activity.startActivity(intent);
 }
@@ -97,7 +120,7 @@ else {
     return;
 }
 
-Toast.makeText(activity,s,Toast.LENGTH_SHORT).show();
+Toast.makeText(activity,"Username or password is Wrong",Toast.LENGTH_SHORT).show();
     activity.progressBar.setVisibility(View.INVISIBLE);
     activity.linearLayout.setVisibility(View.VISIBLE);
     activity.logo.setVisibility(View.VISIBLE);

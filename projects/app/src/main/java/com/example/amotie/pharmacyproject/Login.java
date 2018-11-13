@@ -2,6 +2,7 @@ package com.example.amotie.pharmacyproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -50,7 +51,8 @@ ProgressBar progressBar;
             }
             String md5st = md5data.toString(16);
 Network network=new Network(Login.this);
-network.execute(usernameText,"123123");
+network.execute(usernameText,md5st);
+
         }
         else{
             Toast.makeText(getApplicationContext(), "Connect to Network  ", Toast.LENGTH_SHORT).show();

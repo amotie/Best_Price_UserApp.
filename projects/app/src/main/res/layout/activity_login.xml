@@ -29,7 +29,7 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-
+        android:textCursorDrawable="@drawable/curcor"
         android:background="@drawable/border"
         android:backgroundTint="@color/colorAccent"
         android:hint="Username"
@@ -41,17 +41,15 @@
         android:id="@+id/password"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-      android:layout_marginTop="25dp"
+        android:layout_marginTop="25dp"
         android:inputType="textPassword"
-
-
-
+        android:textCursorDrawable="@drawable/curcor"
         android:background="@drawable/border"
         android:backgroundTint="@color/colorAccent"
         android:hint="Password"
         android:shadowColor="#000000"
         android:textStyle="bold"
-    android:layout_gravity="center"/>
+        android:layout_gravity="center"/>
 
     <Button
         android:layout_width="143dp"

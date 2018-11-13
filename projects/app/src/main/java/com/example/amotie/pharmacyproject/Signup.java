@@ -19,7 +19,7 @@ public class Signup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        username = (EditText) findViewById(R.id.username);
+        username = (EditText) findViewById(R.id.usename);
         email = (EditText) findViewById(R.id.email);
        phone = (EditText) findViewById(R.id.phone3);
         password = (EditText) findViewById(R.id.password);
@@ -43,9 +43,19 @@ public class Signup extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
                 String md5st = md5data.toString(16);
+                String usernamt=username.getText().toString();
+
+
+                String emailt=email.getText().toString();
+                String phonet=phone.getText().toString();
+                String addresst=address.getText().toString();
+                String comp=companyname.getText().toString();
+                System.out.println(usernamt);
+
                 NetworkRegester networkRegester = new NetworkRegester(Signup.this);
-                networkRegester.execute(/*username.getText().toString(), email.getText().toString(), phone.getText().toString(), md5st, address.getText().toString(), companyname.getText().toString()*/"ali","amotie@outlook.com","01001288970",md5st,"adas","asdasd");
+                networkRegester.execute(usernamt,emailt,phonet, md5st,addresst,comp);
             }
             else{
                 Toast.makeText(getApplicationContext(), "Password is not correct ", Toast.LENGTH_SHORT).show();
