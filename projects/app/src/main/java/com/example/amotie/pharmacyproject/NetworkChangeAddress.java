@@ -41,7 +41,7 @@ public class NetworkChangeAddress extends AsyncTask<String,Void,String[]> {
 
     protected String[] doInBackground(String... strings) {
 
-        String UserUpdateUrl="http://amotie.000webhostapp.com/updateUsers/updateAdress.php";
+        String UserUpdateUrl="https://bestdiscounteg.com/Android/updateUsers/updateAdress.php";
         try {
             String id=strings[0];
             String address=strings[1];

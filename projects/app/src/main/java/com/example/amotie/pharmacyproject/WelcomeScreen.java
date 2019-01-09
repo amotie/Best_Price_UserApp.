@@ -19,15 +19,19 @@ public class WelcomeScreen extends AppCompatActivity {
                     SharedPreferences sharedPreferences =getSharedPreferences("userInfo",MODE_PRIVATE);
 
                     if(sharedPreferences.getString("username","").length()==0){
+                 /*       Network network=new Network();
+                        network.execute(sharedPreferences.getString("username",""),sharedPreferences.getString("password",""));
+*/
                         Intent intent=new Intent(getApplicationContext(),Login.class);
                         startActivity(intent);
                     }
-                    else{
+                    else {
 
-                        Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
-                    }
 
+                    }
                     finish();
                 } catch (InterruptedException e) {
                     e.printStackTrace();

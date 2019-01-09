@@ -4,26 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUp"
+    tools:context=".Signup"
     android:isScrollContainer="true"
     android:background="@color/colorPrimary"
     android:overScrollMode="always"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="2">
 
     <ImageView
-        android:layout_width="85dp"
-        android:layout_height="85dp"
+        android:layout_width="221dp"
+        android:layout_height="221dp"
         android:src="@drawable/logo"
         android:layout_gravity="center"
         android:layout_weight="1"
+
         />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:orientation="vertical">
 
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:id="@+id/Lin1">
         <EditText
             android:id="@+id/usename"
             android:layout_width="240dp"
@@ -33,27 +36,72 @@
             android:background="@drawable/border"
             android:textCursorDrawable="@drawable/curcor"
             android:hint="Username"
+            android:inputType="text"
             android:shadowColor="#000000"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/email"
+            android:textStyle="bold"
+            android:imeOptions="actionSend"/>
+        <Button
             android:layout_width="240dp"
-
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
+            android:background="@drawable/greenborder"
 
+            android:onClick="Next1"
+            android:id="@+id/Next1"
+            android:shadowColor="#4cae4c"
+            android:text="Next"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/lin2">
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="240dp"
+            android:imeOptions="actionSend"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:inputType="textEmailAddress"
             android:background="@drawable/border"
             android:hint="Email"
             android:shadowColor="#000000"
             android:textStyle="bold"
             android:textCursorDrawable="@drawable/curcor"/>
+        <Button
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/greenborder"
+
+            android:onClick="Next2"
+            android:id="@+id/Next12"
+            android:shadowColor="#000000"
+            android:text="Next"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:id="@+id/lin3">
         <EditText
             android:layout_width="240dp"
             android:layout_height="wrap_content"
 
-
+            android:imeOptions="actionSend"
             android:layout_gravity="center"
             android:textStyle="bold"
             android:shadowColor="#000000"
@@ -64,19 +112,35 @@
             android:background="@drawable/border"
             android:textCursorDrawable="@drawable/curcor"
             />
-        <LinearLayout
+        <Button
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:orientation="horizontal">
+            android:background="@drawable/greenborder"
+
+            android:onClick="Next3"
+            android:id="@+id/Next3"
+            android:shadowColor="#000000"
+            android:text="Next"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:id="@+id/lin4">
             <EditText
                 android:id="@+id/password"
-                android:layout_width="wrap_content"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="15dp"
 
-                android:layout_weight="1"
                 android:background="@drawable/border"
                 android:hint="Password"
                 android:inputType="textPassword"
@@ -85,19 +149,42 @@
                 android:textCursorDrawable="@drawable/curcor"
                 />
 
+
             <EditText
                 android:id="@+id/password1"
-                android:layout_width="wrap_content"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textCursorDrawable="@drawable/curcor"
-                android:layout_weight="1"
+                android:layout_marginTop="15dp"
                 android:hint="Password"
+                android:imeOptions="actionSend"
                 android:background="@drawable/border"
                 android:inputType="textPassword"
                 android:shadowColor="#000000"
                 android:textStyle="bold" />
-        </LinearLayout>
+        <Button
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/greenborder"
+
+            android:onClick="Next4"
+            android:id="@+id/Next4"
+            android:shadowColor="#000000"
+            android:text="Next"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:visibility="gone"
+    android:id="@+id/lin5">
         <EditText
             android:id="@+id/address"
             android:layout_width="240dp"
@@ -105,19 +192,44 @@
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:background="@drawable/border"
+            android:imeOptions="actionSend"
             android:textCursorDrawable="@drawable/curcor"
             android:hint="Address"
+            android:inputType="text"
             android:shadowColor="#000000"
             android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/companyname"
+        <Button
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
+            android:background="@drawable/greenborder"
+
+            android:onClick="Next5"
+            android:id="@+id/Next5"
+            android:shadowColor="#000000"
+            android:text="Next"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+                </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:id="@+id/lin6">
+        <EditText
+            android:id="@+id/companyname"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionSend"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
             android:background="@drawable/border"
-            android:hint="Company Name"
+            android:hint="Pharmacy Name"
+            android:inputType="text"
             android:shadowColor="#000000"
             android:textStyle="bold"
             android:textCursorDrawable="@drawable/curcor"
@@ -130,13 +242,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:background="@drawable/border"
+            android:background="@drawable/greenborder"
 
             android:onClick="SignUp"
             android:id="@+id/phone2"
             android:shadowColor="#000000"
             android:text="signup"
-            android:textColor="@color/colorPrimary"
+            android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:textStyle="bold" />
     </LinearLayout>

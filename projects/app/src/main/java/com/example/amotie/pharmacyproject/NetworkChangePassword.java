@@ -45,7 +45,7 @@ public class NetworkChangePassword extends AsyncTask<String,Void,String[]> {
 
     protected String[] doInBackground(String... strings) {
 
-        String UserUpdateUrl="http://amotie.000webhostapp.com/updateUsers/updatePassword.php";
+        String UserUpdateUrl="https://bestdiscounteg.com/Android/updateUsers/updatePassword.php";
         try {
             String id=strings[0];
             String oldpassword=strings[1];

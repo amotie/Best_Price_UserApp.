@@ -8,19 +8,15 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 
 public class Settings extends AppCompatActivity {
     ProgressBar progressBar;
@@ -111,9 +107,17 @@ else{
                 if(isConnected==true) {
                     SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
                     String id = sharedPreferences.getString("id", "");
-                    NetworkChangeEmail networkChangeEmail = new NetworkChangeEmail(Settings.this);
-                    networkChangeEmail.execute(id, NewUEmail.getText().toString());
-                }
+
+                    String emailPattern="[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                    if(NewUEmail.getText().toString().trim().matches(emailPattern)) {
+                        NetworkChangeEmail networkChangeEmail = new NetworkChangeEmail(Settings.this);
+                        networkChangeEmail.execute(id, NewUEmail.getText().toString());
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Enter Valid Email", Toast.LENGTH_SHORT).show();
+
+                    }
+                    }
                 else{
                     Toast.makeText(getApplicationContext(), "Connect to Network  ", Toast.LENGTH_SHORT).show();
                 }

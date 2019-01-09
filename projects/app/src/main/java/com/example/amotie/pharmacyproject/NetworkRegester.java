@@ -24,7 +24,7 @@ public class NetworkRegester extends AsyncTask<String,Void,String> {
     }
     @Override
     protected String doInBackground(String... strings) {
-        String Regester_Url= "http://amotie.000webhostapp.com/register.php";
+        String Regester_Url= "https://bestdiscounteg.com/Android/Regester.php";
 
 
         try {

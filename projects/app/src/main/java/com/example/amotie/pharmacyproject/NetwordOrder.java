@@ -1,10 +1,6 @@
 package com.example.amotie.pharmacyproject;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.view.View;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -19,32 +15,32 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
-public class NetworkChangeNumber extends AsyncTask<String,Void,String[]> {
-    private WeakReference<Settings> activityWeakReference;
-    NetworkChangeNumber(Settings activity){
-        activityWeakReference=new WeakReference<Settings>(activity);
+public class NetwordOrder extends AsyncTask<String,Void,String> {
+    private WeakReference<ShoppingCart> activityWeakReference;
+    NetwordOrder(ShoppingCart activity){
+        activityWeakReference=new WeakReference<ShoppingCart>(activity);
     }
 
     @Override
     protected void onPreExecute() {
-        Settings activity=activityWeakReference.get();
+        ShoppingCart activity=activityWeakReference.get();
         if(activity==null||activity.isFinishing()){
             return;
         }
-
-
         super.onPreExecute();
     }
 
+
     @Override
-
-    protected String[] doInBackground(String... strings) {
-
-        String UserUpdateUrl="https://bestdiscounteg.com/Android/updateUsers/updatePhone.php";
+    protected String doInBackground(String... strings) {
+        String UserUpdateUrl="https://bestdiscounteg.com/Android/Order.php";
         try {
             String id=strings[0];
-            String number=strings[1];
+            String amount=strings[1];
+            String medID=strings[2];
+            String CartID=strings[3];
             URL url= new URL(UserUpdateUrl);
             HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
             httpURLConnection.setRequestMethod("POST");
@@ -52,8 +48,10 @@ public class NetworkChangeNumber extends AsyncTask<String,Void,String[]> {
             httpURLConnection.setDoOutput(true);
             OutputStream outputStream=httpURLConnection.getOutputStream();
             BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"utf-8"));
-            String post_data= URLEncoder.encode("id","utf-8")+"="+URLEncoder.encode(id,"utf-8")+"&"+
-                    URLEncoder.encode("phone","utf-8")+"="+URLEncoder.encode(number,"utf-8");
+            String post_data= URLEncoder.encode("ID","utf-8")+"="+URLEncoder.encode(id,"utf-8")+"&"+
+                    URLEncoder.encode("Amount","utf-8")+"="+URLEncoder.encode(amount,"utf-8") +"&"+
+                    URLEncoder.encode("MedID","utf-8")+"="+URLEncoder.encode(medID,"utf-8")+"&"+
+                    URLEncoder.encode("CartID","utf-8")+"="+URLEncoder.encode(CartID,"utf-8");
             bufferedWriter.write(post_data);
             bufferedWriter.flush();
             bufferedWriter.close();
@@ -68,8 +66,8 @@ public class NetworkChangeNumber extends AsyncTask<String,Void,String[]> {
             bufferedReader.close();
             inputStream.close();
             httpURLConnection.disconnect();
-            String[]output={result,id,number};
-            return output;
+
+            return result;
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -80,31 +78,13 @@ public class NetworkChangeNumber extends AsyncTask<String,Void,String[]> {
     }
 
     @Override
-    protected void onPostExecute(String[] s) {
-        Settings  activity=activityWeakReference.get();
-        System.out.println(s);
-        if(s[0].equals(" Record Updated")){
-            if(activity==null||activity.isFinishing()){
-                return;
-            }
-            SharedPreferences sharedPreferences=activity.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor=sharedPreferences.edit();
-            editor.putString("id",s[1]);
-            editor.putString("Phone",s[2]);
-            editor.apply();
-            Intent intent=new Intent(activity,MainActivity.class);
-            activity.startActivity(intent);
-        }
-        else {
-            if(activity==null||activity.isFinishing()){
-                return;
-            }
+    protected void onPostExecute(String s) {
+        ShoppingCart  activity=activityWeakReference.get();
 
-            Toast.makeText(activity,"Cant Update Number",Toast.LENGTH_SHORT).show();
 
-        }
+
+            Toast.makeText(activity,s,Toast.LENGTH_SHORT).show();
+
         super.onPostExecute(s);
     }
-
 }
-

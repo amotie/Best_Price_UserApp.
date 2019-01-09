@@ -33,6 +33,7 @@
         android:background="@drawable/border"
         android:backgroundTint="@color/colorAccent"
         android:hint="Username"
+        android:inputType="text"
         android:shadowColor="#000000"
         android:textStyle="bold"
         android:layout_gravity="center" />
@@ -48,6 +49,7 @@
         android:backgroundTint="@color/colorAccent"
         android:hint="Password"
         android:shadowColor="#000000"
+        android:imeOptions="actionSend"
         android:textStyle="bold"
         android:layout_gravity="center"/>
 
@@ -55,13 +57,13 @@
         android:layout_width="143dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:background="@drawable/border"
-        android:backgroundTint="@color/colorAccent"
+        android:background="@drawable/greenborder"
+
         android:onClick="Login"
         android:shadowColor="#000000"
 
         android:text="Login"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#FFFFFF"
         android:textSize="20dp"
         android:textStyle="bold"
         android:layout_gravity="center"/>

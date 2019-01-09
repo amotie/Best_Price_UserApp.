@@ -1,12 +1,9 @@
-
 package com.example.amotie.pharmacyproject;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.UriMatcher;
 import android.os.AsyncTask;
-import android.view.View;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -23,30 +20,30 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
-public class Network extends AsyncTask<String,Void,ArrayList<String>> {
+public class NetwordDrop extends AsyncTask<String,Void,String> {
     private WeakReference<Login> activityWeakReference;
-    Network(Login activity){
+    NetwordDrop(Login activity){
         activityWeakReference=new WeakReference<Login>(activity);
     }
 
     @Override
     protected void onPreExecute() {
-            Login activity = activityWeakReference.get();
-            if (activity == null || activity.isFinishing()) {
-                return;
-            }
+        Login activity = activityWeakReference.get();
+        if (activity == null || activity.isFinishing()) {
+            return;
+        }
 
         super.onPreExecute();
     }
 
     @Override
 
-    protected ArrayList<String> doInBackground(String... strings) {
+    protected String doInBackground(String... strings) {
 
-      String LoginUrl="https://bestdiscounteg.com/Android/login.php";
+        String LoginUrl="https://bestdiscounteg.com/Android/login1.php";
         try {
             String username=strings[0];
-            String password=strings[1];
+
             URL url= new URL(LoginUrl);
             HttpURLConnection httpURLConnection=(HttpURLConnection)url.openConnection();
             httpURLConnection.setRequestMethod("POST");
@@ -54,8 +51,7 @@ public class Network extends AsyncTask<String,Void,ArrayList<String>> {
             httpURLConnection.setDoOutput(true);
             OutputStream outputStream=httpURLConnection.getOutputStream();
             BufferedWriter bufferedWriter=new BufferedWriter(new OutputStreamWriter(outputStream,"utf-8"));
-            String post_data=URLEncoder.encode("username","utf-8")+"="+URLEncoder.encode(username,"utf-8")+"&"+
-                    URLEncoder.encode("password","utf-8")+"="+URLEncoder.encode(password,"utf-8");
+            String post_data=URLEncoder.encode("username","utf-8")+"="+URLEncoder.encode(username,"utf-8");
             bufferedWriter.write(post_data);
             bufferedWriter.flush();
             bufferedWriter.close();
@@ -63,20 +59,18 @@ public class Network extends AsyncTask<String,Void,ArrayList<String>> {
             InputStream inputStream=httpURLConnection.getInputStream();
             BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
 
-            ArrayList arrayList =new ArrayList<String>();
+           String result="";
             String line;
 
             while ((line=bufferedReader.readLine())!=null){
-                arrayList.add(line);
+                result+=line;
 
             }
-            arrayList.add(username);
-            arrayList.add(password);
             bufferedReader.close();
             inputStream.close();
             httpURLConnection.disconnect();
 
-            return arrayList;
+            return result;
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -87,37 +81,25 @@ public class Network extends AsyncTask<String,Void,ArrayList<String>> {
     }
 
     @Override
-    protected void onPostExecute(ArrayList<String> s) {
+    protected void onPostExecute(String s) {
         Login activity=activityWeakReference.get();
 //System.out.println(s.get(0));
-if(s.get(0).equals("Correct")){
-    if(activity==null||activity.isFinishing()){
-        return;
-    }
+        if(s.equals("Done")){
+            if(activity==null||activity.isFinishing()){
+                return;
+            }
+            Toast.makeText(activity,s,Toast.LENGTH_SHORT).show();
 
-SharedPreferences sharedPreferences=activity.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-SharedPreferences.Editor editor=sharedPreferences.edit();
-    editor.putString("id",s.get(1));
-    editor.putString("username",s.get(6));
-    editor.putString("password",s.get(7));
-    editor.putString("Email",s.get(2));
-    editor.putString("Adress",s.get(3));
-    editor.putString("Phone",s.get(4));
-    editor.putString("Pharmacy_Name",s.get(5));
 
-editor.apply();
+        }
+        else {
+            if(activity==null||activity.isFinishing()){
+                return;
+            }
 
-    Intent intent=new Intent(activity,MainActivity.class);
-    activity.startActivity(intent);
-}
-else {
-    if(activity==null||activity.isFinishing()){
-    return;
-}
+            Toast.makeText(activity,"Username or password is Wrong",Toast.LENGTH_SHORT).show();
 
-Toast.makeText(activity,"Username or password is Wrong",Toast.LENGTH_SHORT).show();
-
-}
+        }
         super.onPostExecute(s);
     }
 }

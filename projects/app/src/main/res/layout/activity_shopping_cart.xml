@@ -52,7 +52,7 @@ android:layout_below="@id/ShoppingList"
         android:layout_alignParentEnd="true"
         android:textSize="20dp"
         android:textColor="#000000"
-        android:text="20000 EGP"
+        android:text="0 EGP"
         android:id="@+id/Total_Price"
 
         />

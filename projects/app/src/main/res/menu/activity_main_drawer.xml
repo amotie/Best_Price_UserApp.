@@ -4,16 +4,19 @@
     tools:showIn="navigation_view">
 
 
-        <item android:title="Track Order"
-            android:id="@+id/Track"
+        <item android:title="History"
+            android:id="@+id/History"
+            android:icon="@drawable/history"
             />
 
         <item
             android:title="Settings"
-            android:id="@+id/settings"/>
-        <item android:title="Log Out"
-
-            android:id="@+id/Logout"/>
+            android:id="@+id/settings"
+            android:icon="@drawable/settings"/>
+        <item
+            android:title="Log Out"
+            android:id="@+id/Logout"
+            android:icon="@drawable/logout"/>
 
 
 

@@ -41,7 +41,7 @@ public class NetworkChangePharmacy extends AsyncTask<String,Void,String[]> {
 
     protected String[] doInBackground(String... strings) {
 
-        String UserUpdateUrl="http://amotie.000webhostapp.com/updateUsers/updatePharmacyName.php";
+        String UserUpdateUrl="https://bestdiscounteg.com/Android/updateUsers/updatePharmacyName.php";
         try {
             String id=strings[0];
             String pharmacy=strings[1];
